@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Quickstart guide</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Quickstart guide</h1>
+
+
+
+<p>Varunayan = Varun + ayan. In Vedic mythology, Varun is the god of the
+sky, order, truth and water. In Sanskrit, ayan means path.</p>
+<p>The varunayan package downloads climate variables for any region of
+the globe from <a href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels">ERA5</a>.
+ERA5 is a reanalysis. It combines models and historical observations to
+estimate many atmospheric, land and ocean variables from 1940 to the
+present. The package gets the data from the <a href="https://cds.climate.copernicus.eu/">Copernicus Climate Data
+Store</a> (CDS).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(varunayan)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;stars&#39;:</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;   method                  from</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;   st_interpolate_aw.stars sf</span></span></code></pre></div>
+<div id="cds-credentials" class="section level2">
+<h2>CDS credentials</h2>
+<p>To get ERA5 data, you must have a <a href="https://cds.climate.copernicus.eu/how-to-api">CDS API key</a>.
+Save the key one time only.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">setup_cds_credentials</span>(<span class="at">key =</span> <span class="st">&quot;your-personal-access-token&quot;</span>)</span></code></pre></div>
+</div>
+<div id="key-arguments" class="section level2">
+<h2>Key arguments</h2>
+<p>The three download functions share these arguments.</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>request_id</code></td>
+<td>Name of the request. Use a unique name for each request.</td>
+</tr>
+<tr class="even">
+<td><code>variables</code></td>
+<td>ERA5 variable names, for example <code>&quot;2m_temperature&quot;</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>start_date</code>, <code>end_date</code></td>
+<td>Dates as <code>&quot;YYYY-MM-DD&quot;</code>.</td>
+</tr>
+<tr class="even">
+<td><code>frequency</code></td>
+<td><code>&quot;hourly&quot;</code> (default), <code>&quot;daily&quot;</code>,
+<code>&quot;weekly&quot;</code>, <code>&quot;monthly&quot;</code> or
+<code>&quot;yearly&quot;</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>resolution</code></td>
+<td>Grid size in degrees (default 0.25).</td>
+</tr>
+<tr class="even">
+<td><code>dataset_type</code>, <code>pressure_levels</code></td>
+<td>Use <code>&quot;pressure&quot;</code> and a vector such as <code>&quot;850&quot;</code>
+for pressure-level data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data-for-a-bounding-box" class="section level2">
+<h2>Data for a bounding box</h2>
+<p><code>era5ify_bbox()</code> gets the grid cells inside a box. Here we
+get daily temperature and precipitation for five days around Delhi.</p>
+<p>The output is in long format: one row for each time, grid cell and
+variable. The <code>variable</code> column holds the ERA5 short name
+(<code>t2m</code> is 2 m temperature, <code>tp</code> is total
+precipitation). Temperatures are in °C. Precipitation is in mm and is
+the total for each day.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">era5ify_bbox</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">request_id =</span> <span class="st">&quot;quickstart_bbox&quot;</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;2m_temperature&quot;</span>, <span class="st">&quot;total_precipitation&quot;</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="st">&quot;2024-01-01&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="st">&quot;2024-01-05&quot;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">north =</span> <span class="dv">29</span>, <span class="at">south =</span> <span class="dv">28</span>, <span class="at">east =</span> <span class="dv">78</span>, <span class="at">west =</span> <span class="fl">76.5</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="st">&quot;daily&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">head</span>(bbox)</span></code></pre></div>
+</div>
+<div id="data-for-a-geojson-region" class="section level2">
+<h2>Data for a GeoJSON region</h2>
+<p><code>era5ify_geojson()</code> takes a path or URL of a GeoJSON file.
+Here we use the <a href="https://geo.bharatviz.org/geojsons/admin/India-geodata-lgd-states.geojson">LGD
+state boundaries of India</a>. With <code>level = &quot;feature&quot;</code>, the
+output has one row for each state, with the mean of the grid cells
+inside it. The default <code>level = &quot;union&quot;</code> keeps each grid
+cell.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">era5ify_geojson</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="at">request_id =</span> <span class="st">&quot;quickstart_states&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">&quot;2m_temperature&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="st">&quot;2024-01-01&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="st">&quot;2024-01-01&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">json_file =</span> <span class="st">&quot;https://geo.bharatviz.org/geojsons/admin/India-geodata-lgd-states.geojson&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="st">&quot;daily&quot;</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">level =</span> <span class="st">&quot;feature&quot;</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">head</span>(states)</span></code></pre></div>
+</div>
+<div id="data-for-a-point" class="section level2">
+<h2>Data for a point</h2>
+<p><code>era5ify_point()</code> keeps the grid cell nearest to a
+latitude and longitude. Here we get the daily temperature and
+precipitation in Mumbai in the first week of August 2024, during the
+monsoon.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>mumbai <span class="ot">&lt;-</span> <span class="fu">era5ify_point</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="at">request_id =</span> <span class="st">&quot;quickstart_point&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">&quot;2m_temperature&quot;</span>, <span class="st">&quot;total_precipitation&quot;</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="st">&quot;2024-08-01&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="st">&quot;2024-08-07&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fl">19.07</span>, <span class="at">lon =</span> <span class="fl">72.88</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="st">&quot;daily&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>mumbai</span></code></pre></div>
+</div>
+<div id="data-at-pressure-levels" class="section level2">
+<h2>Data at pressure levels</h2>
+<p>ERA5 also gives the atmosphere at 37 pressure levels, from 1000 hPa
+(near the surface) to 1 hPa. A lower pressure is a higher altitude: 850
+hPa is approximately 1.5 km and 200 hPa is approximately 12 km. Set
+<code>dataset_type = &quot;pressure&quot;</code> and give the levels in
+<code>pressure_levels</code>. The output has a
+<code>pressure_level</code> column (hPa).</p>
+<p>Here we get the daily temperature at six levels over Delhi for three
+days. <code>spatial_mean()</code> with
+<code>by = &quot;pressure_level&quot;</code> gives the mean temperature at each
+level. The temperature decreases as the altitude increases.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>profile <span class="ot">&lt;-</span> <span class="fu">era5ify_bbox</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">request_id =</span> <span class="st">&quot;quickstart_pressure&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">&quot;temperature&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="st">&quot;2024-01-01&quot;</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="st">&quot;2024-01-03&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">north =</span> <span class="dv">29</span>, <span class="at">south =</span> <span class="dv">28</span>, <span class="at">east =</span> <span class="dv">78</span>, <span class="at">west =</span> <span class="fl">76.5</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">dataset_type =</span> <span class="st">&quot;pressure&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">pressure_levels =</span> <span class="fu">c</span>(<span class="st">&quot;1000&quot;</span>, <span class="st">&quot;850&quot;</span>, <span class="st">&quot;700&quot;</span>, <span class="st">&quot;500&quot;</span>, <span class="st">&quot;300&quot;</span>, <span class="st">&quot;200&quot;</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="st">&quot;daily&quot;</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="fu">head</span>(profile)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">plot_series</span>(<span class="fu">spatial_mean</span>(profile, <span class="st">&quot;value&quot;</span>, <span class="at">by =</span> <span class="st">&quot;pressure_level&quot;</span>),</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;pressure_level&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">ylabel =</span> <span class="st">&quot;Temperature (°C)&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Temperature profile over Delhi, 1-3 January 2024&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="find-a-variable" class="section level2">
+<h2>Find a variable</h2>
+<p>ERA5 has hundreds of variables. <code>search_variable()</code> finds
+the variables that match a word, in the single-level and pressure-level
+datasets.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">search_variable</span>(<span class="st">&quot;temperature&quot;</span>, <span class="at">dataset_type =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#&gt;              variable_name                  description units dataset_type</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; 1  2m_dewpoint_temperature 2 metre dewpoint temperature     K       single</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; 2           2m_temperature          2 metre temperature     K       single</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt; 3         skin_temperature             Skin temperature     K       single</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt; 4 soil_temperature_level_1     Soil temperature level 1     K       single</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; 5 soil_temperature_level_2     Soil temperature level 2     K       single</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; 6 soil_temperature_level_3     Soil temperature level 3     K       single</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; 7 soil_temperature_level_4     Soil temperature level 4     K       single</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; 8              temperature                  Temperature     K     pressure</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt;                   category</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; 1 temperature_and_pressure</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt; 2 temperature_and_pressure</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; 3 temperature_and_pressure</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt; 4           soil_variables</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt; 5           soil_variables</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; 6           soil_variables</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt; 7           soil_variables</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt; 8    atmospheric_variables</span></span></code></pre></div>
+</div>
+<div id="describe-variables" class="section level2">
+<h2>Describe variables</h2>
+<p><code>describe_variables()</code> gives a description and the unit of
+each variable.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">describe_variables</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;2m_temperature&quot;</span>, <span class="st">&quot;total_precipitation&quot;</span>, <span class="st">&quot;surface_pressure&quot;</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="at">dataset_type =</span> <span class="st">&quot;single&quot;</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt;         variable_name         description units dataset_type</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; 1      2m_temperature 2 metre temperature     K       single</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 2 total_precipitation Total precipitation     m       single</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 3    surface_pressure    Surface pressure    Pa       single</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt;                   category</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 1 temperature_and_pressure</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 2  precipitation_variables</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; 3 temperature_and_pressure</span></span></code></pre></div>
+</div>
+<div id="imd-data" class="section level2">
+<h2>IMD data</h2>
+<p>The India Meteorological Department (IMD) gives gridded rainfall and
+temperature for India. You do not need credentials for IMD data.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>rain <span class="ot">&lt;-</span> <span class="fu">imd_rainfall_bbox</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="at">request_id =</span> <span class="st">&quot;quickstart_imd_rain&quot;</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="at">start_year =</span> <span class="dv">2023</span>, <span class="at">end_year =</span> <span class="dv">2023</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="at">north =</span> <span class="dv">22</span>, <span class="at">south =</span> <span class="dv">16</span>, <span class="at">east =</span> <span class="dv">80</span>, <span class="at">west =</span> <span class="dv">73</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="at">frequency =</span> <span class="st">&quot;monthly&quot;</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">head</span>(rain)</span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
